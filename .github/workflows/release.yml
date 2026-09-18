@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: PlayerOK Bot ${{ github.ref_name }}
+          body: |
+            ## PlayerOK Telegram Bot ${{ github.ref_name }}
+
+            ### Highlights
+            - **DeepSeek AI Auto-Responder**: Intelligent seller persona powered by DeepSeek-V3, R1 and Vision.
+            - **Auto-Delivery & Restoration**: Instant digital goods delivery and auto-restoration of expired/sold lots.
+            - **Auto-Bumping**: Automatic item bumping with interval, cooldown, and night mode settings.
+            - **Auto-Withdrawal**: Automated funds withdrawal to Cards, SBP, and USDT.
+            - **Telegram Admin UI**: Full control via inline keyboard and support for Forum Topics in Supergroups.
+            - **Docker & Compose**: Production-ready containerization.
+            - **Auth Helper**: Simple PC script (`get_cookies.py`) for automatic session capture.
+          draft: false
+          prerelease: false
+          generate_release_notes: true
