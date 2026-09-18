@@ -1,0 +1,15 @@
+services:
+  playerok-bot:
+    build: .
+    container_name: playerok_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./bot_settings:/app/bot_settings
+      - ./bot_data:/app/bot_data
+      - ./logs:/app/logs
+      - ./modules:/app/modules
+    environment:
+      - TZ=Europe/Moscow
+      - PYTHONUNBUFFERED=1
