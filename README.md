@@ -10,33 +10,6 @@
 
 ---
 
-## Архитектура
-
-```mermaid
-flowchart TD
-    subgraph Marketplace["Торговая площадка"]
-        PL[PlayerOK Platform]
-    end
-
-    subgraph Core["Ядро автоматизации"]
-        API[PlayerOK API Client]
-        Engine[Bot Engine & Event Listener]
-        AI[DeepSeek AI Auto-Responder]
-    end
-
-    subgraph Management["Управление и хранение"]
-        TG[Telegram Admin Bot : aiogram 3]
-        Storage[(bot_settings & bot_data)]
-    end
-
-    PL <-->|WebSocket & HTTP Events| API
-    API <--> Engine
-    Engine <-->|Автоответы и Vision| AI
-    Engine <-->|Уведомления и управление| TG
-    Engine <--> Storage
-```
-
----
 
 ## Возможности
 
